@@ -1,0 +1,84 @@
+.profile{
+    margin-left: 70px;
+    padding: 20px;
+    border-radius: 8px;
+    width: 70%;
+    margin: 0 auto;
+    height: 100vh
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+    /* 08135363778 */
+}
+
+  
+  .profileImageContainer {
+    text-align: center;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+
+    .img{
+        border-radius: 50%;
+        border: 2px solid #007bff;
+        width: 95px;
+        height: 95px;
+        background-color: #c3cad9;
+        cursor: pointer;
+        margin-bottom: 10px;
+        margin: auto;
+    }
+
+  
+  .changeImageLink {
+    color: gray;
+    text-decoration: underline;
+    font-size: 14px;
+  }
+  
+  .profileForm {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+  }
+  
+  .inputField {
+    width: 48%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+  
+  .textArea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 15px;
+  }
+  
+  .updateButton {
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+
+  }
+  
+  .updateButton:hover {
+    background-color: #0056b3;
+  }
+  .btn:active{
+    background-color: #3c94f1;
+  }

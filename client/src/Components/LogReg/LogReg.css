@@ -1,0 +1,107 @@
+.logregBox {
+  width: 300px;
+  margin: 8rem auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  background-color: #f0f0f0;
+}
+
+.form-box {
+  display: none;
+}
+
+.form-box.login-container {
+  display: block;
+  
+}
+
+.form-box.signUp-container {
+  display: block;
+}
+
+h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-wrapper {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.myIcon {
+  position: absolute;
+  left: 10px;
+  top: 30%;
+  transform: translateY(-50%);
+  color: #888;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.input {
+  width: 100%;
+  padding: 10px 10px 10px 40px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+  color: #333;
+}
+
+.input::placeholder {
+  color: #888;
+}
+
+#valid{
+  background:rgb(253, 121, 121);
+  color: rgb(218, 214, 214);
+  margin-top: -.7rem;
+  border-radius: 5px;
+  width: 15rem;
+  align-items: center;
+  text-align: center;
+  margin-left: 11px;
+  font-size: 13px;
+
+}
+
+.btn {
+  width: 100%;
+  padding: 10px;
+  background-color: #888;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.btn:hover {
+  background-color: #666;
+}
+
+.hidden {
+  display: none;
+}
+
+.loginLink, .registerLink {
+  color: #333;
+}
+
+.loginLink a, .registerLink a {
+  color: #007BFF;
+  cursor: pointer;
+}
+
+.loginLink a:hover, .registerLink a:hover {
+  text-decoration: underline;
+}
