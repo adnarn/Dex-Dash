@@ -9,7 +9,7 @@ const PORT = 4000
 
 app.use(cors(
   {
-        origin: ["https://dexdashboard.vercel.app"],
+        origin: ["https://dex-dashboard-frontend.vercel.app"],
         methods: ["POST", "GET", "PUT", "DELETE"],
         credentials: true
   }
