@@ -13,7 +13,7 @@ const HomeDash = () => {
   }, []);
 
   const fetchItems = (query = '') => {
-    axios.get(`http://localhost:4000/search?q=${query}`)
+    axios.get(`https://dexdashboard.vercel.app/search?q=${query}`)
       .then(result => {
         setItems(result.data);
       })
@@ -26,7 +26,7 @@ const HomeDash = () => {
 
 
   useEffect(() => {
-    axios.get('http://localhost:4000/')
+    axios.get('https://dex-dash-server.vercel.app/')
       .then(result => {
         setItems(result.data);
       })

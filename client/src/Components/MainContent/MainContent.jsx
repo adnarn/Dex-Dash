@@ -14,7 +14,7 @@ const MainContent = () => {
   }, []);
 
   const fetchItems = (query = '') => {
-    axios.get(`http://localhost:4000/search?q=${query}`)
+    axios.get(`https://dex-dash-server.vercel.app/search?q=${query}`)
       .then(result => {
         setItems(result.data);
       })
@@ -29,7 +29,7 @@ const MainContent = () => {
   const [itemToDelete, setItemToDelete] = useState(null);
 
   const handleDelete = (index, id) => {
-    axios.delete('http://localhost:4000/deleteItem/' + id)
+    axios.delete('https://dex-dash-server.vercel.app/deleteItem/' + id)
       .then(res => console.log(res))
       .catch(err => console.log(err));
 

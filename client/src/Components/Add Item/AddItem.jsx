@@ -12,7 +12,7 @@ const AddItem = () => {
 
   const Submit = (e)=>{
     e.preventDefault();
-    axios.post("http://localhost:4000/addItem", {name, price})
+    axios.post("https://dex-dash-server.vercel.app/addItem", {name, price})
     .then(result =>{
        console.log(result)
        navigate('/')

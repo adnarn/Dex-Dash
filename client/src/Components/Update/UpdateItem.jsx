@@ -11,7 +11,7 @@ const UpdateItem = () => {
     
 
     useEffect(() => {
-        axios.get('http://localhost:4000/getItem/'+id)
+        axios.get('https://dex-dash-server.vercel.app/getItem/'+id)
           .then(result => {
             {console.log(result)}
             setName(result.data.name)
@@ -22,7 +22,7 @@ const UpdateItem = () => {
 
       const Update = (e)=>{
         e.preventDefault();
-        axios.put("http://localhost:4000/updateItem/"+id, {name, price})
+        axios.put("https://dex-dash-server.vercel.app/updateItem/"+id, {name, price})
         .then(result =>{
            console.log(result)
            navigate('/')
