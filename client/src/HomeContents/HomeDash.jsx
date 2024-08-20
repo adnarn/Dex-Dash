@@ -13,7 +13,7 @@ const HomeDash = () => {
   }, []);
 
   const fetchItems = (query = '') => {
-    axios.get(`https://dexdashboard.vercel.app/search?q=${query}`)
+    axios.get(`https://dex-dash-server.vercel.app/search?q=${query}`)
       .then(result => {
         setItems(result.data);
       })
