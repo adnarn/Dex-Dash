@@ -1,33 +1,37 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styles from './MainContent.module.css';
-import {Link} from 'react-router-dom'
-import {FaEdit, FaPlusCircle, FaRegEdit, FaThLarge, FaTrash } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
+import { FaEdit, FaPlusCircle, FaRegEdit, FaThLarge, FaTrash } from 'react-icons/fa';
 import ConfirmModal from './ConfirmModal';
-import UpdateModal from '../Update/UpdateModal';
+import SearchBar from '../SearchBar/SearchBar';
 
 const MainContent = () => {
-  const [items, setItems] = useState([ ]);
-
+  const [items, setItems] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:4000/')
+    fetchItems(); // Initial fetch of all items
+  }, []);
+
+  const fetchItems = (query = '') => {
+    axios.get(`http://localhost:4000/search?q=${query}`)
       .then(result => {
         setItems(result.data);
       })
       .catch(err => console.log(err));
-  }, []);
+  };
 
+  const handleSearch = (searchQuery) => {
+    fetchItems(searchQuery);
+  };
 
-
-
-  const [showModal, setShowModal] = useState(false); 
+  const [showModal, setShowModal] = useState(false);
   const [itemToDelete, setItemToDelete] = useState(null);
 
-  const handleDelete = (index,id) => {
-    axios.delete('http://localhost:4000/deleteItem/'+id)
-      .then(res=> console.log(res))
-      .catch(err=> console.log(err))
+  const handleDelete = (index, id) => {
+    axios.delete('http://localhost:4000/deleteItem/' + id)
+      .then(res => console.log(res))
+      .catch(err => console.log(err));
 
     setShowModal(true);
     setItemToDelete(index);
@@ -40,19 +44,19 @@ const MainContent = () => {
     setItemToDelete(null);
   };
 
-
-
   const handleClose = () => setShowModal(false);
 
   return (
     <div className={styles.mainContent}>
       <main>
         <div className={styles.header}>
-        <h2 className={styles.headers}><FaThLarge className={styles.dashIcons}/> Dashboard</h2>
-        <Link to='/add'>
-        <button className={styles.button}><FaPlusCircle className={styles.icons} /> Add Item</button>
-        </Link>
+          <h2 className={styles.headers}><FaThLarge className={styles.dashIcons}/> Dashboard</h2>
+          
+          <SearchBar  onSearch={handleSearch} /> {/* Add the SearchBar component */}
 
+          <Link to='/add'>
+            <button className={styles.button}><FaPlusCircle className={styles.icons} /> Add Item</button>
+          </Link>
         </div>
         <div className="table-responsive">
           <table className="table table-sm">
@@ -72,14 +76,12 @@ const MainContent = () => {
                   <td>{index + 1}</td>
                   <td>{item.name}</td>
                   <td>&#8358;{item.price}</td>
-                  <td>{new Date(item.date).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true })}</td> {/* Display the time */}
+                  <td>{new Date(item.date).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true })}</td>
                   <td>{new Date(item.date).toLocaleDateString()}</td>
                   <td>
                     <td className="del del-primary">
                       <Link to={`/update/${item._id}`}>
-                      <FaRegEdit
-                        className={styles.edit}
-                      />
+                        <FaRegEdit className={styles.edit} />
                       </Link>
                     </td>
                     <td className="del del-danger">
@@ -96,18 +98,11 @@ const MainContent = () => {
         </div>
       </main>
 
-     
       <ConfirmModal
         show={showModal}
         handleClose={handleClose}
         handleConfirm={handleConfirmDelete}
       />
-     
-      {/* <UpdateModal
-        show={showModal}
-        handleClose={handleClose}
-        handleConfirm={handleConfirmDelete}
-      /> */}
     </div>
   );
 };

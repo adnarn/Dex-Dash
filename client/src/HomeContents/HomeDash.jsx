@@ -2,10 +2,27 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styles from './HomeDash.module.css';
 import {Link} from 'react-router-dom'
+import SearchBar from '../Components/SearchBar/SearchBar'
 import {FaEdit, FaPlusCircle, FaRegEdit, FaThLarge, FaTrash } from 'react-icons/fa';
 
 const HomeDash = () => {
   const [items, setItems] = useState([ ]);
+
+  useEffect(() => {
+    fetchItems(); // Initial fetch of all items
+  }, []);
+
+  const fetchItems = (query = '') => {
+    axios.get(`http://localhost:4000/search?q=${query}`)
+      .then(result => {
+        setItems(result.data);
+      })
+      .catch(err => console.log(err));
+  };
+
+  const handleSearch = (searchQuery) => {
+    fetchItems(searchQuery);
+  };
 
 
   useEffect(() => {
@@ -24,6 +41,9 @@ const HomeDash = () => {
       <main>
         <div className={styles.header}>
         <h2 className={styles.headers}><FaThLarge className={styles.dashIcons}/> Dashboard</h2>
+
+        <SearchBar  onSearch={handleSearch} /> {/* Add the SearchBar component */}
+
         <Link to='/add'>
         <button className={styles.button}><FaPlusCircle className={styles.icons} /> Add Item</button>
         </Link>

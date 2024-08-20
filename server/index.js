@@ -65,6 +65,15 @@ app.put('/updateItem/:id', (req, res) => {
 })
 
 
+app.get('/search', (req, res) => {
+  const query = req.query.q; // get the search query from the request
+
+  ItemModel.find({ name: { $regex: query, $options: 'i' } }) // case-insensitive search
+    .then(items => res.json(items))
+    .catch(err => res.status(500).json(err));
+});
+
+
 
 
 
