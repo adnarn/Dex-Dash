@@ -1,12 +1,12 @@
-import React from 'react'
-import styles from './Profile.module.css';
+import React from 'react';
+import styles from './Settings.module.css';
 import pic from './profilePic.jpeg'
 
 
-const Profile = () => {
+
+const Settings = () => {
   return (
-    <div>
-        <div className={styles.profile}>
+    <div className={styles.profile}>
           <div className= {styles.profileImageContainer}>
                   <img src={pic} className= {styles.img} />
             <span className={styles.changeImageLink}> Change Profile Picture</span>
@@ -17,29 +17,29 @@ const Profile = () => {
                 <input type="text"
                     placeholder='Name' 
                     className={styles.input}
-                />  
+                />   
                 <input
-                type="password"
+                type="number"
                 placeholder='Password'
                   className={styles.input}                  
-                  />
+                  />  
 
                 <input
-                type="password"
+                type="number"
                 placeholder='Confirm Password'
                   className={styles.input}                  
                   />
  
-                  </div>
           <button 
            className ={styles.btn}
            >
               Update Profile 
           </button>          
-
-        </div>
+                  </div>
+      
+      
     </div>
   );
 };
 
-export default Profile;
+export default Settings;

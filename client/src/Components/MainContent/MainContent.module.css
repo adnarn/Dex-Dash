@@ -17,6 +17,10 @@
     background-color: white;
 }
 
+.actions{
+    background: white;
+}
+
 .edit{
     color: #6c757d;
     cursor: pointer;

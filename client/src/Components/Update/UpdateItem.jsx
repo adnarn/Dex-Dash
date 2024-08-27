@@ -6,8 +6,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 const UpdateItem = () => {
     const [name, setName] = useState('')
     const [price, setPrice] = useState('')
-    const navigate = useNavigate()
     const {id} = useParams()
+    const navigate = useNavigate()
     
 
     useEffect(() => {
@@ -32,7 +32,6 @@ const UpdateItem = () => {
 
 
     return (
-      <div className={styles.contents}>
           <form className={styles.form} onSubmit={Update}>
           <h3 className={styles.header}>Update Item</h3>
               <input type="text"
@@ -52,7 +51,6 @@ const UpdateItem = () => {
                 />
               <button  className ={styles.btn}>Update</button>
           </form>
-      </div>
     )
 }
 

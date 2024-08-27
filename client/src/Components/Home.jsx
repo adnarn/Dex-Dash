@@ -1,14 +1,16 @@
-import React from 'react'
+import React, {useState} from 'react'
 import TopNav from './TopNav'
 import SideNav from './SideNav'
 
+
 const Home = () => {
+  const [theme, setTheme] = useState("light");
+
   return (
-    <div>
-        <TopNav />
-        <SideNav />
-    </div>
+    <div className={theme === 'light' ? 'light-theme' : 'dark-theme'}>
+    <TopNav theme={theme} setTheme={setTheme} />
+  </div>
   )
 }
 
-export default Home
+export default Home 

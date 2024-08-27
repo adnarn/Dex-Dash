@@ -3,9 +3,9 @@ import axios from 'axios';
 import styles from './HomeDash.module.css';
 import {Link} from 'react-router-dom'
 import SearchBar from '../Components/SearchBar/SearchBar'
-import {FaEdit, FaPlusCircle, FaRegEdit, FaThLarge, FaTrash } from 'react-icons/fa';
+import { FaPlusCircle} from 'react-icons/fa';
 
-const HomeDash = () => {
+const HomeDash = ({theme}) => {
   const [items, setItems] = useState([ ]);
 
   useEffect(() => {
@@ -37,10 +37,10 @@ const HomeDash = () => {
 
 
   return (
-    <div className={styles.mainContent}>
-      <main>
+    <div className={`${styles.mainContent} ${theme === 'light' ? 'light-theme' : 'dark-theme'}`}>
+      <main className= {theme === 'light' ? 'light-theme' : 'dark-theme'} >
         <div className={styles.header}>
-        <h2 className={styles.headers}><FaThLarge className={styles.dashIcons}/> Dashboard</h2>
+        <h2 className={styles.headers}> Dashboard</h2>
 
         <SearchBar  onSearch={handleSearch} /> {/* Add the SearchBar component */}
 
@@ -50,7 +50,7 @@ const HomeDash = () => {
 
         </div>
         <div className="table-responsive">
-          <table className="table table-sm">
+        <table className={`table table-sm ${theme === 'light' ? 'table-light' : 'table-dark'}`}>
             <thead>
               <tr>
                 <th>S/N</th>

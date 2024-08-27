@@ -1,24 +1,34 @@
-const express = require ('express');
-const mongoose = require('mongoose');
-const cors = require ("cors");
-const ItemModel = require ('./models/UserModel')
+const express = require('express');
+const signupRoute = require('./routes/signup');
+const bodyParser = require('body-parser');
+const createAdminAccount = require('./scripts/admin');
+const cors = require('cors');
+const loginRoute = require('./routes/login')
+const ItemModel = require ('./models/ItemModel')
+const UserModel = require ('./models/user')
+
  
 
 const app = express()
+
 const PORT = 4000
 
-app.use(cors())
+app.use(express.json());
+app.use(cors());
+
+
+app.use('/user', signupRoute);
+
+app.use('/auth', loginRoute);
+
 app.use(express.json())
 
-mongoose.connect("mongodb+srv://adnusy2023:123456dexDash@dexdash.enxr0.mongodb.net/dexDash")
-        .then(()=>{
-            app.listen( PORT, () => {
-                console.log(`Hello, the server is running at port ${PORT}`)
-     }
-     
-     )
-                console.log('server connected to database sucessfully')
-        }).catch(()=>{console.log('error')})
+
+app.listen( PORT, () => {
+  console.log(`Hello, the server is running at port ${PORT}`)
+  createAdminAccount();
+})
+
 
         app.get('/', (req, res) => {
             ItemModel.find({})
@@ -58,6 +68,25 @@ app.put('/updateItem/:id', (req, res) => {
    ItemModel.findByIdAndUpdate({_id: id}, {
     name: req.body.name, 
     price: req.body.price
+  })
+  .then(items => res.json(items))
+  .catch(err => res.json)
+
+})
+
+app.get('/updateUser/:id', (req, res) => {
+  const id = req.params.id;
+  UserModel.findById({_id:id})
+  .then(items => res.json(items))
+  .catch(err => res.json)
+})
+
+
+app.put('/updateUser/:id', (req, res) => {
+  const id = req.params.id;
+   UserModel.findByIdAndUpdate({_id: id}, {
+    name: req.body.name, 
+    email: req.body.email
   })
   .then(items => res.json(items))
   .catch(err => res.json)
