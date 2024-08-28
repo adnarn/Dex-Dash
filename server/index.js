@@ -73,25 +73,7 @@ app.put('/updateItem/:id', (req, res) => {
   .catch(err => res.json)
 
 })
-
-app.get('/updateUser/:id', (req, res) => {
-  const id = req.params.id;
-  UserModel.findById({_id:id})
-  .then(items => res.json(items))
-  .catch(err => res.json)
-})
-
-
-app.put('/updateUser/:id', (req, res) => {
-  const id = req.params.id;
-   UserModel.findByIdAndUpdate({_id: id}, {
-    name: req.body.name, 
-    email: req.body.email
-  })
-  .then(items => res.json(items))
-  .catch(err => res.json)
-
-})
+ 
 
 
 app.get('/search', (req, res) => {

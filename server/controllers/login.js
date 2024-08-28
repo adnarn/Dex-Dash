@@ -1,4 +1,6 @@
 const authService = require('../services/login');
+const User = require('../models/user');
+
 
 async function login(req, res) {
     try {
@@ -10,6 +12,9 @@ async function login(req, res) {
         res.status(401).json({ message: error.message || "Invalid Credentials" });
     }
 }
+
+ 
+  
 
 module.exports = {
     login
