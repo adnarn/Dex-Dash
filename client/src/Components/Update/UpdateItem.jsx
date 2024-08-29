@@ -3,7 +3,7 @@ import styles from './UpdateItem.module.css'
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 
-const UpdateItem = () => {
+const UpdateItem = ({theme}) => {
     const [name, setName] = useState('')
     const [price, setPrice] = useState('')
     const {id} = useParams()
@@ -32,8 +32,8 @@ const UpdateItem = () => {
 
 
     return (
-          <form className={styles.form} onSubmit={Update}>
-          <h3 className={styles.header}>Update Item</h3>
+      <form className={`${styles.form} ${theme === 'light' ? 'light-theme' : 'dark-theme'}`} onSubmit={Update}>
+        <h3 className={`  ${styles.header} ${theme === 'light' ? 'light-theme' : 'dark-theme'}`}>Add Item</h3>
               <input type="text"
                   placeholder='Input Service Name' 
                    className={styles.input}
