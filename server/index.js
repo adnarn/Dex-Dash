@@ -6,6 +6,7 @@ const cors = require('cors');
 const loginRoute = require('./routes/login')
 const ItemModel = require ('./models/ItemModel')
 const UserModel = require ('./models/user')
+const path = require("path")
 
  
 
@@ -24,10 +25,45 @@ app.use('/auth', loginRoute);
 app.use(express.json())
 
 
-app.listen( PORT, () => {
+////////////////////////////////// Deployment ///////////////////////////////
+
+// const __dirname1 = path.resolve();
+// if (process.env.NODE_ENV === 'production') {
+//     app.use(express.static(path.join(__dirname1, "/client/dist")))
+
+//     app.get('*', (req, res) => {
+//       res.sendFile(path.resolve(__dirname1, "client", "dist", "index.html"))
+//     })
+// }
+// else{
+//   app.get('/', (req, res) =>{
+//     res.send('API is running successfully!');
+//   });
+// }
+
+const __dirname1 = path.resolve();
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static(path.join(__dirname1, "client", "dist")));
+
+    app.get('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname1, "client", "dist", "index.html"));
+    });
+} else {
+    app.get('/', (req, res) => {
+        res.send('API is running successfully!');
+    });
+}
+
+
+////////////////////////////////// Deployment ///////////////////////////////
+
+
+app.listen( 4000, () => {
   console.log(`Hello, the server is running at port ${PORT}`)
+  console.log(path.resolve(__dirname1, "client", "dist", "index.html"));
   createAdminAccount();
 })
+
 
 
         app.get('/', (req, res) => {

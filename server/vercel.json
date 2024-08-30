@@ -1,9 +1,10 @@
 {
   "version": 2,
+ 
   "routes": [
     {
-      "src": "/api/user/register",
-      "dest": "/server/index.js"
+      "src": "/(.*)",
+      "dest": "/index.js"
     }
   ]
 }
