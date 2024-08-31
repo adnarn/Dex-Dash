@@ -14,9 +14,11 @@ const MainContent = ({ theme }) => {
   }, []);
 
   const fetchItems = (query = '') => {
-    axios.get(`http://localhost:4000/search?q=${query}`)
+    const url = query ? `http://localhost:4000/api/search?q=${query}` : 'http://localhost:4000/api/items';
+    axios.get(url)
       .then(result => {
-        setItems(result.data);
+        const data = Array.isArray(result.data) ? result.data : []; // Ensure it's an array
+        setItems(data);
       })
       .catch(err => console.log(err));
   };
@@ -34,12 +36,12 @@ const MainContent = ({ theme }) => {
       dangerMode: true,
     }).then((willDelete) => {
       if (willDelete) {
-        axios.delete(`http://localhost:4000/deleteItem/${id}`)
+        axios.delete(`http://localhost:4000/api/items/${id}`)
           .then(res => {
             const updatedItems = items.filter((_, i) => i !== index);
             setItems(updatedItems);
-            swal(" Your item has been deleted!", {
-              // icon: "success",
+            swal("Your item has been deleted!", {
+              icon: "success",
             });
           })
           .catch(err => {
@@ -53,6 +55,7 @@ const MainContent = ({ theme }) => {
       }
     });
   };
+
 
   return (
     <div className={`${styles.mainContent} ${theme === 'light' ? 'light-theme' : 'dark-theme'}`}>
@@ -79,7 +82,7 @@ const MainContent = ({ theme }) => {
               </tr>
             </thead>
             <tbody>
-              {items.map((item, index) => (
+              {Array.isArray(items) && items.map((item, index) => (
                 <tr key={index}>
                   <td>{index + 1}</td>
                   <td>{item.name}</td>

@@ -26,6 +26,7 @@ coverage/
 .vscode/
 .idea/
 *.swp
+.node_modules
 
 # Logs
 logs

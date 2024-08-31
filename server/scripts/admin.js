@@ -3,7 +3,7 @@ const argon2 = require("argon2");
 
 async function createAdminAccount() {
     try {
-        const existingAdmin = await User.findOne({ email: 'adnusy@gm.com' });
+        const existingAdmin = await User.findOne({ email: 'adnusy@gmail.com' });
 
         if (!existingAdmin) {
             const newAdmin = new User({
